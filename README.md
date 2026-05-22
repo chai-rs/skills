@@ -23,11 +23,11 @@ vibe-skills/
 
 ```sh
 /plugin marketplace add chai-rs/skills
-/plugin install vibe-skills@vibe-skills
+/plugin install chai@vibe-skills
 ```
 
-After install, skills/commands/agents become available under the plugin
-namespace.
+After install, skills/commands/agents become available under the
+`/chai:` namespace, e.g. `/chai:plan-todo`, `/chai:tdd`.
 
 ## Install — openskills (community, universal)
 

@@ -1,6 +1,6 @@
 {
-  "name": "vibe-skills",
-  "description": "Personal collection of Claude Code skills, commands, and subagents.",
+  "name": "chai",
+  "description": "chai-rs personal Claude Code plugin — curated skills, slash commands, and subagents.",
   "version": "0.1.0",
   "author": {
     "name": "chai-rs"
