@@ -1,0 +1,27 @@
+---
+title: Skip zones
+locked: false
+---
+
+# Skip zones
+
+ค่า latency อยู่ที่ 2.5 วินาที และ throughput ราว 99.9% ของ request ต่อหนึ่งวินาที
+
+batch รันทุกเช้า 6:00 น. ใช้เวลาราว 2 ชม. ต่อรอบ เริ่มใช้ตั้งแต่ ธ.ค. ปีที่แล้ว
+
+สูตรประเมินคือ $O(n \log n)$ ใช้คิดคร่าวๆ ได้
+
+$$
+T = \frac{n}{r}
+$$
+
+```ts
+// ระบบช้าลง. ต้องทำซ้ำ ๆ หลาย ๆ รอบ ในยุคปัจจุบัน
+const note = "ทำซ้ำ ๆ"
+```
+
+<Callout type="idea" title="Tips">
+อย่าเริ่มจาก microservices ตั้งแต่วันแรก ทุกคนเริ่มจาก monolith
+</Callout>
+
+> ทีมเล็กใช้ monolith ก็พอ. ไม่ต้อง over-engineer. แต่พอทีมโต coordination เริ่มเจ็บ

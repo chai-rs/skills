@@ -1,0 +1,16 @@
+[project]
+name = "thai-prose"
+version = "0.1.0"
+description = "Linter + tests for the thai-prose Claude skill (universal Thai prose + scaler-client lesson MDX)"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "pyyaml>=6.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["scripts", "tests"]
