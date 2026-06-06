@@ -1,58 +1,76 @@
 ---
 name: plan-todo
-description: Write a detailed, reviewable implementation plan (with code snippets and a phased todo list) to a persistent plan doc — without writing any production code. Use after the design direction is chosen, when the user asks for a plan doc, or says /plan-todo. The planning phase of the research -> plan-for -> plan-todo -> update -> implement workflow.
+description: Write a detailed, reviewable implementation plan (real code snippets, side-by-side old/new diagrams, per-phase acceptance criteria, and a phased todo) to a persistent HTML plan doc (.plan/<stem>-plan.html) — without writing any production code. Use after the design direction is chosen, when the user asks for a plan doc, or says /plan-todo. The planning phase of the research -> plan-for -> plan-todo -> update -> implement workflow.
 ---
 
 # plan-todo
 
 The planning phase of the **research -> plan-for -> plan-todo -> update ->
-implement** workflow. Produce a detailed `plan.md`-style document that a reviewer
-can read, annotate, and approve *before* implementation. The design direction is
-already decided (in `plan-for`); this phase turns it into concrete, mechanical
-steps so that implementation becomes boring.
+implement** workflow. Produce a detailed HTML plan document that a reviewer can
+read in a browser, annotate, and approve *before* implementation. The design
+direction is already decided (in `plan-for`); this phase turns it into concrete,
+mechanical steps so that implementation becomes boring.
 
 Language- and stack-agnostic. Match whatever conventions and tooling the
 project already uses; discover them rather than assuming.
 
 ## Workflow
 
-1. **Ground in the chosen direction.** Read the `plan-for` design doc in
-   `.plan/` if one exists, and any `.project/research_*.md` for the work. The
-   approach should already be settled — if it is not and the change is
-   non-trivial, recommend `plan-for` (to choose a direction) or
-   `research-project` (to understand the system) first.
+1. **Ground in the chosen direction.** Read the `plan-for` design doc
+   (`.plan/<stem>-design.html`) if one exists, and the research doc its
+   `Source research:` link names. If several research docs exist and no design
+   doc links one, pick the one whose Scope matches this work; ask if ambiguous.
+   If the approach is not settled and the change is non-trivial, recommend
+   `plan-for` (to choose a direction) or `research-project` (to understand the
+   system) first.
 
 2. **Resolve the plan filename.**
    - Directory: `.plan/` (create it if missing).
-   - If the user gave a name (via `args` or message), use `.plan/<name>.md`.
-   - Otherwise derive a short, descriptive kebab-case name from the task
-     context (e.g. `.plan/add-rate-limiter.md`) and tell the user the name
-     you chose.
+   - If a design doc `.plan/<stem>-design.html` exists for this work, name the
+     plan `.plan/<stem>-plan.html` so the two are siblings.
+   - Otherwise use the user-given name, or derive a short descriptive
+     kebab-case stem from the task context, with a `-plan.html` suffix
+     (e.g. `.plan/add-rate-limiter-plan.html`), and tell the user the name you
+     chose.
+   - Never overwrite a `*-design.html`. If the resolved name collides with any
+     existing `.plan/` file, pick a distinct name or ask.
 
-3. **Write the plan doc.** Include, concretely:
-   - **Goal & scope** — what we're building and what's explicitly out of scope.
+3. **Write the plan doc** from the bundled [template.html](template.html). If a
+   plan already exists at the resolved path, read it first; if it contains
+   `checked` tasks or `<note>` elements, stop and ask how to proceed rather
+   than overwriting. Include, concretely:
+   - **Header** — `data-status="awaiting-approval"` on `<body>`, plus
+     `Design doc:` and `Source research:` links. `plan-update` flips the status
+     on approval; `plan-implement` refuses to run without it.
+   - **Goal** and **Scope** — what we're building, and what's explicitly out
+     of scope.
    - **Approach** — the chosen design from `plan-for`, summarized so the plan
      stands on its own. Do not reopen the decision or re-litigate alternatives
-     here; if no `plan-for` doc exists, briefly state the approach you're
-     planning to and follow any reference implementation the user shared.
-   - **Changes** — actual code snippets and the **file paths** they touch.
-     Show real diffs/snippets, not vague descriptions.
-   - **Risks / open questions** — anything the reviewer should weigh in on.
+     here; if no design doc exists, briefly state the approach you're planning
+     to and follow any reference implementation the user shared.
+   - **Diagrams** — a side-by-side old | new Mermaid diagram for *every*
+     scope/feature/change in the plan. Required, no exceptions.
+   - **Changes** — actual code snippets and the **file paths** they touch,
+     with `<` `>` `&` escaped. Real diffs/snippets, not vague descriptions.
+   - **Risks / open decisions** — anything the reviewer should weigh in on.
+   - **Todo** — phases and individually checkable tasks
+     (`<input type="checkbox">`) that fully cover the plan, each phase with a
+     `Verify:` acceptance-criteria block that defines "done" for that phase.
+     This becomes the progress tracker during implementation.
+   - **Deviations** — an empty section `plan-implement` appends to.
 
-4. **Append a phased todo list.** A checklist of phases and individual tasks
-   that fully covers the plan. This becomes the progress tracker during
-   implementation. Each item should be concrete and independently checkable.
-
-5. **Stop. Do not implement.** Report the plan path and a short summary. The
-   next phase is `plan-update` (the user annotates the doc) and only then
-   `plan-implement`. The phase before this one is `plan-for`, which chose the
-   direction this plan implements.
+4. **Validate and stop. Do not implement.** Confirm the HTML is well-formed
+   (parse check) before reporting. Report the plan path and a short summary,
+   ending with "open it in a browser to review". The next phase is
+   `plan-update` (the user annotates the doc with `<note>...</note>`) and only
+   then `plan-implement`. The phase before this one is `plan-for`, which chose
+   the direction this plan implements.
 
 ## Rules
 
 - **Do not write production code in this phase.** The plan contains snippets;
   the working tree stays untouched.
-- Prefer the markdown plan doc over built-in plan mode — it is persistent,
+- Prefer the HTML plan doc over built-in plan mode — it is persistent,
   annotatable, and survives context compaction.
 - Be specific: real file paths, real snippets, real task breakdown. A plan
   the reviewer cannot annotate precisely has failed its purpose.

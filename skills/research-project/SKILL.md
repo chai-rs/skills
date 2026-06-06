@@ -1,14 +1,15 @@
 ---
 name: research-project
-description: Deeply explore a codebase, folder, feature, or system and write findings to a persistent research doc before any planning or coding. Use when the user wants to understand how something works, asks you to research/investigate/study a part of the project, or says /research-project. First phase of the research -> plan-for -> plan-todo -> update -> implement workflow.
+description: Deeply explore a codebase, folder, feature, or system and write findings to a persistent HTML research doc (.project/research_<timestamp>.html, with diagrams of the current system) before any planning or coding. Use when the user wants to understand how something works, asks you to research/investigate/study a part of the project, or says /research-project. First phase of the research -> plan-for -> plan-todo -> update -> implement workflow.
 ---
 
 # research-project
 
 Phase 1 of the workflow: **research -> plan-for -> plan-todo -> update ->
 implement**. The goal is a written, reviewable understanding of the target
-*before* anyone chooses an approach, writes a plan, or writes code. The worst failure mode this prevents: implementations
-that work in isolation but break the surrounding system.
+*before* anyone chooses an approach, writes a plan, or writes code. The worst
+failure mode this prevents: implementations that work in isolation but break
+the surrounding system.
 
 Language- and stack-agnostic. Do not assume any specific language, framework,
 or tooling — discover it.
@@ -28,18 +29,26 @@ or tooling — discover it.
 
 3. **Write findings to a persistent doc — do not just summarize in chat.**
    - Directory: `.project/` (create it if missing).
-   - Filename: `research_<YYYYMMDDHHmmss>.md` using the current local time.
+   - Filename: `research_<YYYYMMDDHHmmss>.html` using the current local time.
+   - Write it from the bundled [template.html](template.html) — same family as
+     the `.plan/` docs: `data-status` header, `<note>` annotation, escaped code
+     excerpts. Confirm the HTML is well-formed (parse check) before reporting.
    - The file is the review surface; chat summaries are not.
 
 4. **Stop and hand off for review.** Report the doc path and a 2-3 sentence
-   summary. Do **not** start planning or editing code. The user reviews and
-   corrects your understanding first.
+   summary, ending with "open it in a browser to review". Do **not** start
+   planning or editing code. The user reviews and corrects your understanding
+   first — they annotate with `<note>...</note>` and `plan-update` revises the
+   doc.
 
 ## What the research doc must contain
 
 - **Scope** — what was researched, and what was explicitly out of scope.
 - **How it works** — the mechanism, in depth: components, responsibilities,
   control/data flow, key types/functions with `file:line` references.
+- **Diagrams** — Mermaid diagram(s) of the current system for every researched
+  scope: components and control/data flow. Current state only — the old | new
+  compare starts at `plan-for`.
 - **Specificities & intricacies** — non-obvious behavior, invariants, edge
   cases, assumptions the code relies on.
 - **Touch points** — what depends on this and what it depends on; the blast

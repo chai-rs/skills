@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><!-- plan title --></title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#666; --line:#e2e2e2; --accent:#0b5fff; }
+  body { font:15px/1.55 system-ui,-apple-system,sans-serif; color:var(--ink); max-width:980px; margin:2rem auto; padding:0 1.25rem; }
+  h1 { font-size:1.6rem; margin-bottom:.25rem; }
+  h2 { font-size:1.15rem; border-bottom:1px solid var(--line); padding-bottom:.3rem; margin-top:2.2rem; }
+  h3 { font-size:1rem; margin-top:1.4rem; }
+  pre { background:#f6f8fa; border:1px solid var(--line); border-radius:6px; padding:.75rem; overflow-x:auto; font-size:.85rem; }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  a { color:var(--accent); }
+  .badge { display:inline-block; padding:.15rem .6rem; border-radius:999px; font-size:.78rem; font-weight:600; }
+  body[data-status="awaiting-approval"] .badge { background:#fff3cd; color:#7a5d00; }
+  body[data-status="approved"] .badge { background:#d4edda; color:#155724; }
+  body[data-status="done"] .badge { background:#e2e3e5; color:#41464b; }
+  .meta { color:var(--muted); font-size:.85rem; margin:.4rem 0 0; }
+  .compare { display:grid; grid-template-columns:1fr 1fr; gap:1rem; align-items:start; }
+  .compare figure { margin:0; border:1px solid var(--line); border-radius:6px; padding:.6rem; }
+  .compare figcaption { font-size:.8rem; font-weight:600; color:var(--muted); margin-bottom:.4rem; text-transform:uppercase; letter-spacing:.04em; }
+  note { display:block; background:#fff8c5; border-left:4px solid #d4a72c; padding:.5rem .75rem; margin:.6rem 0; border-radius:0 6px 6px 0; }
+  note::before { content:"NOTE"; display:block; font-size:.7rem; font-weight:700; color:#7a5d00; letter-spacing:.06em; }
+  .phase { border:1px solid var(--line); border-radius:8px; padding:.9rem 1.1rem; margin:1rem 0; }
+  .phase h3 { margin-top:0; }
+  .verify { background:#f0f6ff; border-left:4px solid var(--accent); padding:.5rem .75rem; margin-top:.6rem; font-size:.9rem; border-radius:0 6px 6px 0; }
+  .verify strong { color:var(--accent); }
+  ul.tasks { list-style:none; padding-left:.2rem; }
+  ul.tasks li { margin:.25rem 0; }
+  table { border-collapse:collapse; width:100%; font-size:.9rem; }
+  th, td { border:1px solid var(--line); padding:.45rem .6rem; text-align:left; vertical-align:top; }
+  th { background:#fafafa; }
+  .decision { border:1px solid var(--line); border-radius:6px; padding:.6rem .9rem; margin:.6rem 0; }
+  .decision .q { font-weight:600; }
+  footer { color:var(--muted); font-size:.8rem; margin-top:3rem; border-top:1px solid var(--line); padding-top:.8rem; }
+</style>
+</head>
+<body data-status="awaiting-approval">
+
+<header>
+  <h1><!-- plan title --></h1>
+  <span class="badge">awaiting-approval</span>
+  <p class="meta">
+    Design doc: <a href="<!-- ../path -->"><!-- .plan/<stem>-design.html or "none" --></a><br>
+    Source research: <a href="<!-- ../path -->"><!-- .project/research_<ts>.html or "none" --></a><br>
+    Annotate by inserting <code>&lt;note&gt;your comment&lt;/note&gt;</code> anywhere in this file, then run <code>/plan-update</code>.
+  </p>
+</header>
+
+<h2 id="goal">Goal</h2>
+<p><!-- what we're building, in precise terms --></p>
+
+<h2 id="scope">Scope</h2>
+<p><strong>In scope:</strong> <!-- ... --></p>
+<p><strong>Out of scope:</strong> <!-- explicit exclusions --></p>
+
+<h2 id="approach">Approach</h2>
+<p><!-- the chosen design from plan-for, summarized so the plan stands alone. Do not reopen the decision. --></p>
+
+<h2 id="diagrams">Diagrams — old | new</h2>
+<!-- one .compare block per scope/feature/change. Required, no exceptions. -->
+<div class="compare">
+  <figure>
+    <figcaption>Before — <!-- scope name --></figcaption>
+    <pre class="mermaid">
+flowchart TD
+  A[current state]
+    </pre>
+  </figure>
+  <figure>
+    <figcaption>After — <!-- scope name --></figcaption>
+    <pre class="mermaid">
+flowchart TD
+  B[new state]
+    </pre>
+  </figure>
+</div>
+
+<h2 id="changes">Changes</h2>
+<!-- one h3 per file; escape < > & inside code -->
+<h3><!-- path/to/file.ext --></h3>
+<p><!-- what changes and why --></p>
+<pre><code><!-- escaped snippet --></code></pre>
+
+<h2 id="risks">Risks / open decisions</h2>
+<div class="decision"><span class="q">D1 — <!-- question --></span> <!-- options + recommendation --></div>
+
+<h2 id="todo">Todo</h2>
+<!-- one .phase per phase; plan-implement adds `checked` in-file and must pass Verify before checking a phase off -->
+<div class="phase">
+  <h3>Phase 1 — <!-- name --></h3>
+  <ul class="tasks">
+    <li><input type="checkbox"> <!-- concrete, independently checkable task --></li>
+  </ul>
+  <div class="verify"><strong>Verify:</strong> <!-- acceptance criteria defining "done" for this phase --></div>
+</div>
+
+<h2 id="deviations">Deviations</h2>
+<table>
+  <tr><th>Date</th><th>Plan said</th><th>Shipped instead</th><th>Why</th></tr>
+  <tr><td colspan="4"><em>(empty — plan-implement appends here)</em></td></tr>
+</table>
+
+<footer>
+  HTML plan doc &middot; checkboxes are updated in-file by plan-implement; ticking them in a browser does not persist
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+</body>
+</html>

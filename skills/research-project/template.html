@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><!-- research title --></title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#666; --line:#e2e2e2; --accent:#0b5fff; }
+  body { font:15px/1.55 system-ui,-apple-system,sans-serif; color:var(--ink); max-width:980px; margin:2rem auto; padding:0 1.25rem; }
+  h1 { font-size:1.6rem; margin-bottom:.25rem; }
+  h2 { font-size:1.15rem; border-bottom:1px solid var(--line); padding-bottom:.3rem; margin-top:2.2rem; }
+  h3 { font-size:1rem; margin-top:1.4rem; }
+  pre { background:#f6f8fa; border:1px solid var(--line); border-radius:6px; padding:.75rem; overflow-x:auto; font-size:.85rem; }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  a { color:var(--accent); }
+  .badge { display:inline-block; padding:.15rem .6rem; border-radius:999px; font-size:.78rem; font-weight:600; }
+  body[data-status="awaiting-approval"] .badge { background:#fff3cd; color:#7a5d00; }
+  body[data-status="approved"] .badge { background:#d4edda; color:#155724; }
+  .meta { color:var(--muted); font-size:.85rem; margin:.4rem 0 0; }
+  figure.diagram { margin:1rem 0; border:1px solid var(--line); border-radius:6px; padding:.6rem; }
+  figure.diagram figcaption { font-size:.8rem; font-weight:600; color:var(--muted); margin-bottom:.4rem; text-transform:uppercase; letter-spacing:.04em; }
+  note { display:block; background:#fff8c5; border-left:4px solid #d4a72c; padding:.5rem .75rem; margin:.6rem 0; border-radius:0 6px 6px 0; }
+  note::before { content:"NOTE"; display:block; font-size:.7rem; font-weight:700; color:#7a5d00; letter-spacing:.06em; }
+  table { border-collapse:collapse; width:100%; font-size:.9rem; }
+  th, td { border:1px solid var(--line); padding:.45rem .6rem; text-align:left; vertical-align:top; }
+  th { background:#fafafa; }
+  footer { color:var(--muted); font-size:.8rem; margin-top:3rem; border-top:1px solid var(--line); padding-top:.8rem; }
+</style>
+</head>
+<body data-status="awaiting-approval">
+
+<header>
+  <h1><!-- research title --></h1>
+  <span class="badge">awaiting-approval</span>
+  <p class="meta">
+    Target: <!-- folder / feature / subsystem researched --><br>
+    Annotate by inserting <code>&lt;note&gt;your comment&lt;/note&gt;</code> anywhere in this file, then run <code>/plan-update</code>.
+  </p>
+</header>
+
+<h2 id="scope">Scope</h2>
+<p><!-- what was researched, and what was explicitly out of scope --></p>
+
+<h2 id="how">How it works</h2>
+<p><!-- the mechanism, in depth: components, responsibilities, control/data flow, key types/functions with file:line references. Escape < > & in code excerpts. --></p>
+<pre><code><!-- escaped excerpt where it grounds a claim --></code></pre>
+
+<h2 id="diagrams">Diagrams — current system</h2>
+<!-- one diagram per researched scope: components and control/data flow. Current state only; the old | new compare starts at plan-for. -->
+<figure class="diagram">
+  <figcaption><!-- scope name --></figcaption>
+  <pre class="mermaid">
+flowchart TD
+  A[component] --> B[component]
+  </pre>
+</figure>
+
+<h2 id="specificities">Specificities &amp; intricacies</h2>
+<p><!-- non-obvious behavior, invariants, edge cases, assumptions the code relies on --></p>
+
+<h2 id="touchpoints">Touch points</h2>
+<p><!-- what depends on this and what it depends on; the blast radius of a change here --></p>
+
+<h2 id="open">Open questions / risks</h2>
+<p><!-- things to confirm with the user, unknowns, suspected fragility --></p>
+
+<footer>
+  HTML research doc &middot; next phase: the user reviews and corrects this understanding, then <code>plan-for</code> chooses a direction
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+</body>
+</html>
