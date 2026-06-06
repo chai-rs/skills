@@ -53,7 +53,8 @@ Language- and stack-agnostic.
    `Verify:` blocks, and the old | new diagrams so they still match the
    revised plan. Keep code blocks on the doc's highlighting convention:
    `class="language-<lang>"` for code, `class="language-diff"` (`+`/`-`
-   lines, GitHub-style) for modifications.
+   lines, GitHub-style) for modifications. Keep `.compare` figures on the
+   `class="old"` / `class="new"` convention (red/green labels).
 
 5. **Report and stop.** List what you changed, note by note, and explicitly
    confirm you did **not** implement anything. Invite another annotation pass.

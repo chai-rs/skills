@@ -49,7 +49,10 @@ project already uses; discover them rather than assuming.
      here; if no design doc exists, briefly state the approach you're planning
      to and follow any reference implementation the user shared.
    - **Diagrams** — a side-by-side old | new Mermaid diagram for *every*
-     scope/feature/change in the plan. Required, no exceptions.
+     scope/feature/change in the plan. Required, no exceptions. In every
+     `.compare` block, mark the before figure with `class="old"` and the
+     after figure with `class="new"` — the template colors their labels
+     red/green so the two sides are identifiable at a glance.
    - **Changes** — actual code snippets and the **file paths** they touch,
      with `<` `>` `&` escaped. Real diffs/snippets, not vague descriptions.
      Syntax-highlight new code with `class="language-<lang>"` on the `<code>`

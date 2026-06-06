@@ -58,7 +58,10 @@ already uses; discover them rather than assuming.
      the direction. Syntax-highlight every excerpt by setting
      `class="language-<lang>"` on the `<code>` element; render the changed
      side as a GitHub-style diff (`class="language-diff"`, `+`/`-` line
-     prefixes).
+     prefixes). In every `.compare` block, mark the current/before figure
+     with `class="old"` and the proposed/after figure with `class="new"` —
+     the template colors their labels red/green so the two sides are
+     identifiable at a glance.
    - **Recommendation** — pick one and justify it against the others. If the
      user shared a reference implementation, weigh its approach explicitly.
    - **Open decisions** — what the reviewer must still settle before planning:

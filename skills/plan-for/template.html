@@ -5,32 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><!-- design title --></title>
 <style>
-  :root { --ink:#1a1a1a; --muted:#666; --line:#e2e2e2; --accent:#0b5fff; }
-  body { font:15px/1.55 system-ui,-apple-system,sans-serif; color:var(--ink); max-width:980px; margin:2rem auto; padding:0 1.25rem; }
+  /* GitHub Dark page chrome */
+  :root { --bg:#0d1117; --surface:#161b22; --ink:#e6edf3; --muted:#8b949e; --line:#30363d; --accent:#58a6ff; --old:#f85149; --new:#3fb950; }
+  body { font:15px/1.55 system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--ink); max-width:980px; margin:2rem auto; padding:0 1.25rem; }
   h1 { font-size:1.6rem; margin-bottom:.25rem; }
   h2 { font-size:1.15rem; border-bottom:1px solid var(--line); padding-bottom:.3rem; margin-top:2.2rem; }
   h3 { font-size:1rem; margin-top:1.4rem; }
-  pre { background:#f6f8fa; border:1px solid var(--line); border-radius:6px; padding:.75rem; overflow-x:auto; font-size:.85rem; }
+  pre { background:#1e1e1e; border:1px solid var(--line); border-radius:6px; padding:.75rem; overflow-x:auto; font-size:.85rem; }
   code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  :not(pre) > code { background:rgba(110,118,129,.25); padding:.08rem .35rem; border-radius:4px; font-size:.85em; }
   a { color:var(--accent); }
   .badge { display:inline-block; padding:.15rem .6rem; border-radius:999px; font-size:.78rem; font-weight:600; }
-  body[data-status="awaiting-approval"] .badge { background:#fff3cd; color:#7a5d00; }
-  body[data-status="approved"] .badge { background:#d4edda; color:#155724; }
+  body[data-status="awaiting-approval"] .badge { background:rgba(187,128,9,.15); color:#d29922; }
+  body[data-status="approved"] .badge { background:rgba(46,160,67,.15); color:#3fb950; }
   .meta { color:var(--muted); font-size:.85rem; margin:.4rem 0 0; }
   .compare { display:grid; grid-template-columns:1fr 1fr; gap:1rem; align-items:start; }
   .compare figure { margin:0; border:1px solid var(--line); border-radius:6px; padding:.6rem; }
-  .compare figcaption { font-size:.8rem; font-weight:600; color:var(--muted); margin-bottom:.4rem; text-transform:uppercase; letter-spacing:.04em; }
-  note { display:block; background:#fff8c5; border-left:4px solid #d4a72c; padding:.5rem .75rem; margin:.6rem 0; border-radius:0 6px 6px 0; }
-  note::before { content:"NOTE"; display:block; font-size:.7rem; font-weight:700; color:#7a5d00; letter-spacing:.06em; }
-  .approach { border:1px solid var(--line); border-radius:8px; padding:.9rem 1.1rem; margin:1rem 0; }
+  .compare figcaption { display:inline-block; font-size:.78rem; font-weight:600; color:var(--muted); margin-bottom:.4rem; text-transform:uppercase; letter-spacing:.04em; padding:.12rem .55rem; border-radius:999px; background:rgba(110,118,129,.15); }
+  /* old | new identity colors — red = current state, green = proposed state */
+  .compare figure.old { border-color:rgba(248,81,73,.45); }
+  .compare figure.new { border-color:rgba(63,185,80,.45); }
+  .compare figure.old figcaption { color:var(--old); background:rgba(248,81,73,.15); }
+  .compare figure.new figcaption { color:var(--new); background:rgba(63,185,80,.15); }
+  note { display:block; background:rgba(187,128,9,.12); border-left:4px solid #9e6a03; padding:.5rem .75rem; margin:.6rem 0; border-radius:0 6px 6px 0; }
+  note::before { content:"NOTE"; display:block; font-size:.7rem; font-weight:700; color:#d29922; letter-spacing:.06em; }
+  .approach { background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:.9rem 1.1rem; margin:1rem 0; }
   .approach h3 { margin-top:0; }
   .decision { border:1px solid var(--line); border-radius:6px; padding:.6rem .9rem; margin:.6rem 0; }
   .decision .q { font-weight:600; }
   footer { color:var(--muted); font-size:.8rem; margin-top:3rem; border-top:1px solid var(--line); padding-top:.8rem; }
-  .hljs-addition { background:#dafbe1; color:#116329; display:inline-block; width:100%; }
-  .hljs-deletion { background:#ffebe9; color:#82071e; display:inline-block; width:100%; }
+  /* highlight.js — VS Code Dark+ palette */
+  .hljs { display:block; overflow-x:auto; background:#1e1e1e; color:#d4d4d4; }
+  .hljs-comment, .hljs-quote { color:#6a9955; }
+  .hljs-keyword, .hljs-literal, .hljs-selector-tag, .hljs-name { color:#569cd6; }
+  .hljs-built_in, .hljs-type, .hljs-title.class_, .hljs-class .hljs-title { color:#4ec9b0; }
+  .hljs-string, .hljs-meta .hljs-string { color:#ce9178; }
+  .hljs-number, .hljs-symbol { color:#b5cea8; }
+  .hljs-title.function_, .hljs-function .hljs-title { color:#dcdcaa; }
+  .hljs-variable, .hljs-template-variable, .hljs-attr, .hljs-attribute, .hljs-property, .hljs-params { color:#9cdcfe; }
+  .hljs-regexp { color:#d16969; }
+  .hljs-meta, .hljs-doctag { color:#c586c0; }
+  .hljs-section, .hljs-selector-id, .hljs-selector-class { color:#d7ba7d; }
+  .hljs-emphasis { font-style:italic; }
+  .hljs-strong { font-weight:bold; }
+  /* GitHub-dark-style diff lines */
+  .hljs-addition { background:rgba(46,160,67,.18); color:#aff5b4; display:inline-block; width:100%; }
+  .hljs-deletion { background:rgba(248,81,73,.18); color:#ffdcd7; display:inline-block; width:100%; }
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/styles/github.min.css">
 </head>
 <body data-status="awaiting-approval">
 
@@ -56,26 +77,27 @@
   <p><!-- how it works; what it touches at a high level --></p>
   <p><strong>Trade-offs:</strong> <!-- complexity, risk, blast radius, effort, reversibility --></p>
   <!-- code impact: representative, not exhaustive — enough to judge the direction. Required for the recommended approach. Escape < > & -->
+  <!-- class="old" on the current-state figure, class="new" on the proposed-state figure — colors the labels red/green -->
   <div class="compare">
-    <figure>
+    <figure class="old">
       <figcaption>Current — <!-- file:line --></figcaption>
       <pre><code class="language-plaintext"><!-- real excerpt; set class="language-<lang>" to the excerpt's language --></code></pre>
     </figure>
-    <figure>
+    <figure class="new">
       <figcaption>Under this approach — diff</figcaption>
       <pre><code class="language-diff"><!-- what changes, as +/- lines — GitHub-style diff highlight --></code></pre>
     </figure>
   </div>
   <!-- old | new diagram for every scope/feature this approach changes. Required, no exceptions. -->
   <div class="compare">
-    <figure>
+    <figure class="old">
       <figcaption>Before — <!-- scope name --></figcaption>
       <pre class="mermaid">
 flowchart TD
   A[current state]
       </pre>
     </figure>
-    <figure>
+    <figure class="new">
       <figcaption>After — <!-- scope name --></figcaption>
       <pre class="mermaid">
 flowchart TD
@@ -97,6 +119,6 @@ flowchart TD
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
-<script>mermaid.initialize({ startOnLoad: true }); hljs.highlightAll();</script>
+<script>mermaid.initialize({ startOnLoad: true, theme: "dark" }); hljs.highlightAll();</script>
 </body>
 </html>
