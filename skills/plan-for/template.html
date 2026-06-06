@@ -27,7 +27,10 @@
   .decision { border:1px solid var(--line); border-radius:6px; padding:.6rem .9rem; margin:.6rem 0; }
   .decision .q { font-weight:600; }
   footer { color:var(--muted); font-size:.8rem; margin-top:3rem; border-top:1px solid var(--line); padding-top:.8rem; }
+  .hljs-addition { background:#dafbe1; color:#116329; display:inline-block; width:100%; }
+  .hljs-deletion { background:#ffebe9; color:#82071e; display:inline-block; width:100%; }
 </style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/styles/github.min.css">
 </head>
 <body data-status="awaiting-approval">
 
@@ -56,11 +59,11 @@
   <div class="compare">
     <figure>
       <figcaption>Current — <!-- file:line --></figcaption>
-      <pre><code><!-- real excerpt of the current code --></code></pre>
+      <pre><code class="language-plaintext"><!-- real excerpt; set class="language-<lang>" to the excerpt's language --></code></pre>
     </figure>
     <figure>
-      <figcaption>Under this approach</figcaption>
-      <pre><code><!-- what it becomes --></code></pre>
+      <figcaption>Under this approach — diff</figcaption>
+      <pre><code class="language-diff"><!-- what changes, as +/- lines — GitHub-style diff highlight --></code></pre>
     </figure>
   </div>
   <!-- old | new diagram for every scope/feature this approach changes. Required, no exceptions. -->
@@ -93,6 +96,7 @@ flowchart TD
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({ startOnLoad: true });</script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true }); hljs.highlightAll();</script>
 </body>
 </html>

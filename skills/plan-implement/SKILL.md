@@ -70,7 +70,8 @@ already has.
   drifted signature, stale import) and a small fix makes checks pass, apply
   the fix AND log it as a row in the plan's Deviations section with the
   reason. A different approach or new scope is not a mechanical fix — stop and
-  ask.
+  ask. When correcting a snippet in the doc, keep its highlighting convention
+  (`class="language-<lang>"` for code, `class="language-diff"` for diffs).
 - Honor any interface/signature constraints the plan marked as fixed.
 - **Never commit or push** unless the user explicitly asks. A clean tree and
   passing tests are not permission to commit.

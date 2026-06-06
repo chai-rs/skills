@@ -25,7 +25,10 @@
   th, td { border:1px solid var(--line); padding:.45rem .6rem; text-align:left; vertical-align:top; }
   th { background:#fafafa; }
   footer { color:var(--muted); font-size:.8rem; margin-top:3rem; border-top:1px solid var(--line); padding-top:.8rem; }
+  .hljs-addition { background:#dafbe1; color:#116329; display:inline-block; width:100%; }
+  .hljs-deletion { background:#ffebe9; color:#82071e; display:inline-block; width:100%; }
 </style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/styles/github.min.css">
 </head>
 <body data-status="awaiting-approval">
 
@@ -43,7 +46,7 @@
 
 <h2 id="how">How it works</h2>
 <p><!-- the mechanism, in depth: components, responsibilities, control/data flow, key types/functions with file:line references. Escape < > & in code excerpts. --></p>
-<pre><code><!-- escaped excerpt where it grounds a claim --></code></pre>
+<pre><code class="language-plaintext"><!-- escaped excerpt where it grounds a claim; set class="language-<lang>" --></code></pre>
 
 <h2 id="diagrams">Diagrams — current system</h2>
 <!-- one diagram per researched scope: components and control/data flow. Current state only; the old | new compare starts at plan-for. -->
@@ -69,6 +72,7 @@ flowchart TD
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({ startOnLoad: true });</script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true }); hljs.highlightAll();</script>
 </body>
 </html>

@@ -55,7 +55,10 @@ already uses; discover them rather than assuming.
      with `file:line`), right = what it becomes under that approach. Plus a
      Mermaid old | new diagram for every scope/feature the approach changes —
      required, no exceptions. Representative, not exhaustive: enough to judge
-     the direction.
+     the direction. Syntax-highlight every excerpt by setting
+     `class="language-<lang>"` on the `<code>` element; render the changed
+     side as a GitHub-style diff (`class="language-diff"`, `+`/`-` line
+     prefixes).
    - **Recommendation** — pick one and justify it against the others. If the
      user shared a reference implementation, weigh its approach explicitly.
    - **Open decisions** — what the reviewer must still settle before planning:

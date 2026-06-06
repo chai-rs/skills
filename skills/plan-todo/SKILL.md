@@ -52,6 +52,9 @@ project already uses; discover them rather than assuming.
      scope/feature/change in the plan. Required, no exceptions.
    - **Changes** — actual code snippets and the **file paths** they touch,
      with `<` `>` `&` escaped. Real diffs/snippets, not vague descriptions.
+     Syntax-highlight new code with `class="language-<lang>"` on the `<code>`
+     element; show modifications to existing code as GitHub-style diffs
+     (`class="language-diff"`, `+`/`-` line prefixes).
    - **Risks / open decisions** — anything the reviewer should weigh in on.
    - **Todo** — phases and individually checkable tasks
      (`<input type="checkbox">`) that fully cover the plan, each phase with a

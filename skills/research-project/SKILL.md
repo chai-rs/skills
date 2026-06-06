@@ -31,8 +31,10 @@ or tooling — discover it.
    - Directory: `.project/` (create it if missing).
    - Filename: `research_<YYYYMMDDHHmmss>.html` using the current local time.
    - Write it from the bundled [template.html](template.html) — same family as
-     the `.plan/` docs: `data-status` header, `<note>` annotation, escaped code
-     excerpts. Confirm the HTML is well-formed (parse check) before reporting.
+     the `.plan/` docs: `data-status` header, `<note>` annotation, escaped and
+     syntax-highlighted code excerpts (`class="language-<lang>"` on the
+     `<code>` element). Confirm the HTML is well-formed (parse check) before
+     reporting.
    - The file is the review surface; chat summaries are not.
 
 4. **Stop and hand off for review.** Report the doc path and a 2-3 sentence
